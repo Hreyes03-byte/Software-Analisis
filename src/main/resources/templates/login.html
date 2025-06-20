@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesion</title>
+    <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="/styles/login.css" th:href="@{/styles/login.css}">
 </head>
 <body>
     <div class="contenedor">
         <div class="columna">
             <div class="formulario">
-            <figure>
-                <img  class="logo" src="/assets/logo.svg" alt="Eil">
-            </figure>
-                <h1 class="titulo">Inicio de Sesion</h1>
-                <div>
-                    <input type="text" placeholder="Usuario">
-                    <input type="password" placeholder="Contraseña">
-                </div>
-                <div class="option">
-                    <button>Ingresar</button>
-                    <a href="">Registrarse</a>
-                </div>
+                <figure>
+                    <img class="logo" src="/assets/logo.svg" alt="Eil">
+                </figure>
+                <h1 class="titulo">Inicio de Sesión</h1>
+
+                <!-- FORMULARIO CON THYMELEAF -->
+                <form th:action="@{/login}" th:object="${loginRequest}" method="post">
+
+                    <!-- Campo correo -->
+                    <input type="text" th:field="*{correo}" placeholder="Correo">
+                    <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}" class="error"></span>
+
+                    <!-- Campo contraseña -->
+                    <input type="password" th:field="*{contrasenia}" placeholder="Contraseña">
+                    <span th:if="${#fields.hasErrors('contrasenia')}" th:errors="*{contrasenia}" class="error"></span>
+
+                    <!-- Mensaje de error general -->
+                    <div th:if="${error}" class="error" th:text="${error}"></div>
+
+                    <!-- Botones -->
+                    <div class="option">
+                        <button type="submit">Ingresar</button>
+                        <a href="#">Registrarse</a>
+                    </div>
+                </form>
             </div>
         </div>
+
+        <!-- Fondo imagen -->
         <div class="fondo">
-            <img src="/Assets/fondoLogin.jpg " alt="">
+            <img src="/Assets/fondoLogin.jpg" alt="">
         </div>
     </div>
 </body>
