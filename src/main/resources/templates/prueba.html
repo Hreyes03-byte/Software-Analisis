@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Test</title>
+    <link rel="stylesheet" href="/static/styles/login.css" th:href="@{/styles/login.css}" >
+</head>
+<body>
+    <div class="contenedor">
+        <div class="columna">
+            <div class="formulario">
+                <figure>
+                    <img src="./Assets/logo.svg" alt="EIL" class="logo">
+                </figure>
+                <h1 class="titulo">Inicio de Sesion</h1>
+                <form id="loginForm">
+                    <input type="text" placeholder="Correo" id="correo" >
+                    <input type="password" placeholder="contrasenia" id="contrasenia">
+                    <div class="option">
+                        <button type="submit">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="fondo">
+            <img src="/Assets/fondoLogin.jpg" alt="">
+        </div>
+
+    </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      fetch("http://localhost:8081/usuarios/login/check", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          correo: document.getElementById("correo").value,
+          contrasenia: document.getElementById("contrasenia").value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Respuesta:", data);
+        alert("Login exitoso");
+        window.location.href="/registroClientes";
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error en login");
+      });
+    });
+  </script>
+</body>
+</html>

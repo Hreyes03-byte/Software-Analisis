@@ -1,8 +1,9 @@
 package com.example.registro.software.Controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,35 +16,27 @@ import com.example.registro.software.entities.Usuario;
 
 @RestController
 @RequestMapping("/usuarios")
-public class AuthController {
-
+public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    /**
-     * Endpoint de login que busca un usuario por correo y contraseña.
-     * Ruta: POST /usuarios/login/check
-     * Body (JSON): { "correo": "...", "contrasenia": "..." }
-     */
-    @PostMapping("/login/check")
-    public Usuario login(@RequestBody Usuario loginRequest) {
-        Optional<Usuario> usuario = usuarioRepository.findByCorreoAndContrasenia(
-                loginRequest.getCorreo(),
-                loginRequest.getContrasenia()
-        );
-        return usuario.orElse(null); // Si no encuentra, devuelve null (puedes manejar mejor esto luego)
+    @GetMapping
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 
-    /**
-     * Devuelve un usuario por su ID
-     * Ruta: GET /usuarios/id/{id}
-     */
-    @GetMapping("/id/{id}")
+    @PostMapping
+    public Usuario crearUsuario(@RequestBody Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    @GetMapping("/{id}")
     public Usuario obtenerPorId(@PathVariable Integer id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
+    @DeleteMapping("/{id}")
+    public void eliminarUsuario(@PathVariable Integer id) {
+        usuarioRepository.deleteById(id);
+    }
 }
-
-
-
