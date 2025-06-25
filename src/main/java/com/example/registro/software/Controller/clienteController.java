@@ -33,7 +33,6 @@ public class clienteController {
             return null; // o lanzar excepción personalizada
         }
 
-        cliente.setRegistradoPor(usuario);
         return clienteRepository.save(cliente);
     }
 

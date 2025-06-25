@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 
@@ -18,29 +17,27 @@ import jakarta.persistence.Table;
 public class Clientes {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id_cliente;
+
+
     private String nombre;
     private String correo;
 
     @Column(unique= true)
-    private String dni;
+    private String ruc;
 
     @Column(unique=true)
     private String telefono;
 
-    @ManyToOne
-    @JoinColumn(name="registrado_por", referencedColumnName="userid")
-    private Usuario registradoPor;
-
     @Column(name="fecha_registro", columnDefinition="TIMESTAMP")
     private LocalDateTime fechaRegistro;
 
-    public Integer getId() {
-        return id;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer id_cliente) {
+        this.id_cliente= id_cliente;
     }
 
     public String getNombre() {
@@ -59,12 +56,12 @@ public class Clientes {
         this.correo = correo;
     }
 
-    public String getDni() {
-        return dni;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
     public String getTelefono() {
@@ -75,14 +72,6 @@ public class Clientes {
         this.telefono = telefono;
     }
 
-    public Usuario getRegistradoPor() {
-        return registradoPor;
-    }
-
-    public void setRegistradoPor(Usuario registradoPor) {
-        this.registradoPor = registradoPor;
-    }
-
     public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
@@ -91,10 +80,10 @@ public class Clientes {
         this.fechaRegistro = fechaRegistro;
     }
         
-    @PrePersist
+    /* @PrePersist
     public void prePersist() {
         if (fechaRegistro == null) {
             fechaRegistro = LocalDateTime.now();
         }
-    }
+    } */
 }

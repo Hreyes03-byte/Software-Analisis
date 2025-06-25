@@ -99,13 +99,13 @@ a:hover{
     color: white;
 }
 @media (max-width: 768px) {
-  .fondo{
+    .fondo{
     display: none;
-  }
-  .contenedor{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    }
+    .contenedor{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
