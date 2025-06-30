@@ -11,13 +11,15 @@ public class PruebaController {
         return "prueba"; // Busca prueba.html en src/main/resources/templates
     }
 
-    @GetMapping("/registroClientes")
-    public String mostrarRegistroClientes() {
-        return "registroClientes"; // sin .html
-    }
-
     @GetMapping("/index")
     public String mostrarIndex(){
-        return "indexUsuario";
+        return "indexusuario";
     }
+
+    @GetMapping("/clientes")
+    public String mostrarCliente(){
+        return "registroclientes";
+    }
+
+
 }
