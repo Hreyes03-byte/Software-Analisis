@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
     <style>
         *{
             padding: 0;
@@ -35,6 +36,28 @@
         .area{
             text-transform: uppercase;
         }
+
+
+        input{
+            
+        }
+        .cont-boton{
+            padding: 2rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .boton{
+            cursor: pointer;
+            height: auto;
+            width: 10%;
+            border-radius: 8px;
+            background: #15a362;
+            color: #fff;
+            border-color: #15a362;
+        }
+
+
+        
     </style>
 </head>
 <body>
@@ -56,43 +79,17 @@
                 </figure>
             </div>
 
-            <div class="container">
-                <h2>Index</h2>
-                <table id="tabla-index" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Guia</th>
-                            <th>fecha</th>
-                            <th>Pago</th>
-                            <th>Observaciones</th>
-                        </tr>
-                    </thead>
-                </table>
+
+            <div>
+                <div class="cont-boton">
+                    <button class="boton" onclick="window.location.href='/registroEmpresa'" type="submit">Nuevo Empresa</button>
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $("#tabla-index").DataTable({
-                ajax:{
-                    url: "/api/cabezera",
-                    dataSrc: '',
-                },
-                columns:[
-                    {data: "cliente.nombre"},
-                    {data: "guia"},
-                    {data: "fecha"},
-                    {data: "pago"},
-                    {data: "observacions"}
-                ]
-            })
-        })
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     </script>
 </body>
 </html>
