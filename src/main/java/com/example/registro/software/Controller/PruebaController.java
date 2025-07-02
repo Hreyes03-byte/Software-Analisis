@@ -43,4 +43,13 @@ public class PruebaController {
         return "registroEmpresa";
     }
 
+    @GetMapping("/guia")
+    public String mostrarGuia(){
+        return "guia";
+    }
+
+    @GetMapping("/registrarGuia")
+    public String mostrarRegistrarGuia(){
+        return "registrarGuia";
+    }
 }
